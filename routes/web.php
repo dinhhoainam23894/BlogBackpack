@@ -11,11 +11,15 @@
 |
 */
 
+use GuzzleHttp\Client;
+
 Route::get('/', function () {
-    return view('welcome');
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function()
 {
+    CRUD::resource('article', 'ArticleCrudController');
+    CRUD::resource('category', 'CategoryCrudController');
     CRUD::resource('tag', 'TagCrudController');
 });
